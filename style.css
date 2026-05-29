@@ -281,3 +281,32 @@ header nav a {
         height: 280px !important;
     }
 }
+.fixed-watermark-logo {
+    position: fixed;      /* بتخلي اللوجو ثابت في الشاشة مش بيتحرك مع السكرول */
+    bottom: 20px;         /* المسافة من تحت */
+    right: 20px;          /* المسافة من اليمين (تقدر تخليها left لو حابب) */
+    display: flex;        /* عشان نجيب كلمة Powered by جنب اللوجو بالظبط */
+    align-items: center;  /* محاذاة عمودية في المنتصف */
+    gap: 8px;             /* مسافة صغيرة بين الكلمة واللوجو */
+background-image: url(navbg.png);/* خلفية بيضاء شفافة عشان اللوجو يظهر لو الشاشة غامقة */
+    padding: 6px 12px;
+    border-radius: 30px;  /* حواف دائرية ناعمة */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ضل خفيف يدي عمق */
+    z-index: 9999;        /* عشان يفضل فوق أي عنصر في الموقع */
+    user-select: none;    /* تمنع تحديد أو سحب اللوجو */
+}
+
+/* تنسيق كلمة Powered by */
+.powered-text {
+    font-size: 12px;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+/* التحكم في حجم اللوجو */
+.watermark-img {
+    height: 25px;         /* التحكم في الارتفاع عشان تحافظ على النسبة والأبعاد */
+    width: auto;          /* بيظبط العرض تلقائي بناءً على الارتفاع */
+    display: block;
+}
