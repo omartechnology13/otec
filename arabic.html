@@ -54,7 +54,7 @@ content="https://omartechnology.netlify.app">>
     <br>
 <br>
 <br>
-<a class="blac" href="admin.html" style="text-decoration: none; display: inline-block;">
+<a class="blac" href="https://otecstore.netlify.app" style="text-decoration: none; display: inline-block;">
     <button class="goto" style="
         background-color: #ffffff; 
         color: #000000; 
@@ -66,7 +66,7 @@ content="https://omartechnology.netlify.app">>
         cursor: pointer;
         text-transform: uppercase;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    ">دخول الادمن</button>
+    ">اشتر الان </button>
 </a>
 <br>
 </section> 
@@ -135,6 +135,118 @@ content="https://omartechnology.netlify.app">>
 <img class="slide" src="img3.jpg">
 </div>
 <br>
+   <button class="chat-widget-btn" onclick="toggleChat()">💬</button>
+
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <span>Customer Support & Sales ⚡</span>
+            <button class="close-btn" onclick="toggleChat()">✕</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">Hello! I am your Omar Technology AI assistant. Choose an option below or type your question:</div>
+        </div>
+
+        <div class="options-container">
+            <button class="opt-btn" onclick="handleOption('About Us')">ℹ️ About Us</button>
+            <button class="opt-btn" onclick="handleOption('Prices Average')">💰 Prices Average</button>
+            <button class="opt-btn" onclick="handleOption('Developing Time')">⏳ Developing Time</button>
+            <button class="opt-btn" onclick="handleOption('Refund Policy')">🔄 Refund Policy</button>
+            <button class="opt-btn" onclick="handleOption('Payment Methods')">💳 Payment Methods</button>
+            <button class="opt-btn" onclick="handleOption('Human Chatting')">👤 Human Chatting</button>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="customerInput" placeholder="Type your question here..." onkeypress="handleKey(event)">
+            <button onclick="askAgent(document.getElementById('customerInput').value)">Send</button>
+        </div>
+    </div>
+<script>
+    // تأكد من أن المفتاح صحيح وليس به فراغات
+    const API_KEY = "AIzaSyAqBtq4JwkjghpWn_67XLLtoR1948YDRnE";
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+
+    const BUSINESS_INFO = `
+    You are a professional AI Customer Service Agent for Omar Technology.
+    You must guide clients based on these exact details:
+    - About Us: Omar Technology specializes in high-quality web design, design presentations, and design videos.
+    - Prices Average: wesites start at sar 500, videos  start at sar 200 presentations starts at sar 180 .
+    - Developing Time: Projects take between 7 to 14 business days to deliver.
+    - Refund Policy: no refund.
+    - Payment Methods:  direct Bank Transfer.
+    - Human Chatting: chat with us from contact us section .
+    `;
+
+    function toggleChat() {
+        const popup = document.getElementById('chatPopup');
+        popup.style.display = (popup.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function appendMessage(text, isUser) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('msg', isUser ? 'user' : 'bot');
+        msgDiv.innerText = text;
+        messagesContainer.appendChild(msgDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function handleOption(optionName) {
+        appendMessage(optionName, true);
+        askAgent(optionName);
+    }
+
+    async function askAgent(text) {
+    text = text.trim();
+    if (!text) return;
+
+    document.getElementById('customerInput').value = '';
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.classList.add('msg', 'bot');
+    loadingDiv.innerText = "Processing...";
+    document.getElementById('chatMessages').appendChild(loadingDiv);
+    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                // الطريقة الصحيحة لدمج التعليمات والرسالة بدون تعديل تركيب الـ URL
+                systemInstruction: {
+                    parts: [{ text: BUSINESS_INFO }]
+                },
+                contents: [{ 
+                    parts: [{ text: text }] 
+                }]
+            })
+        });
+
+        const data = await response.json();
+        document.getElementById('chatMessages').removeChild(loadingDiv);
+
+        console.log("Gemini API Response:", data);
+
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            const botReply = data.candidates[0].content.parts[0].text;
+            appendMessage(botReply, false);
+        } else {
+            appendMessage("please contact us on whatsapp +966507673413", false);
+        }
+    } catch (error) {
+        document.getElementById('chatMessages').removeChild(loadingDiv);
+        appendMessage("please contact us on whatsapp +966507673413", false);
+        console.error("Fetch Error:", error);
+    }
+}
+
+
+    function handleKey(e) {
+        if (e.key === 'Enter') askAgent(document.getElementById('customerInput').value);
+    }
+</script>
 <footer id="ctus" >
     <hr>
  <a href="https://www.facebook.com/share/1EUrjB4wVy/?mibextid=wwXIfr">   <div class="socicon">
