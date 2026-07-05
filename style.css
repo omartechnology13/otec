@@ -191,6 +191,307 @@ footer
 {
   background-image: url(navbg.png);
   width: 100%;
+}
+.goto
+{
+    color: #ffffff;
+    border-radius: 20px;
+}
+.blac{
+    color: #050913;
+    font-weight: bolder;
+    font-size: 1em;
+}
+/* --- إعدادات عامة للهيدر عشان يفضل أفقي وصغير زي الكمبيوتر --- */
+header {
+    background-color: #000000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important;
+    padding: 5px 15px !important; 
+    height: 60px !important; 
+}
+
+/* ضبط حجم اللوجو جوه الهيدر */
+header img {
+    height: 40px !important; 
+    width: auto !important;
+}
+
+/* إجبار القائمة والروابط تفضل جنب بعضها في سطر واحد */
+header nav {
+    display: flex !important;
+    flex-direction: row !important; 
+    gap: 10px !important; 
+    align-items: center !important;
+    flex-wrap: nowrap !important; /* ممنوع تنزل سطر جديد */
+    overflow-x: auto; /* عشان لو الشاشة ضيقة جداً تقدر تحركهم بصباعك يمين وشمال */
+}
+
+/* إخفاء شريط التمرير عشان الشكل يكون نضيف */
+header nav::-webkit-scrollbar {
+    display: none;
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px !important; /* حجم خط مناسب ومظبوط للموبايل */
+    font-weight: bold;
+    white-space: nowrap !important; /* يمنع الكلمة تتقسم نصين */
+}
+
+/* --- ضبط الـ Features (السلايد شو) عشان الصور ما تمطش --- */
+#features {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.slideshow {
+    width: 100%;
+    max-width: 500px; 
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.slide {
+    width: 100% !important;
+    height: 350px !important; 
+    object-fit: contain !important; /* الخاصية دي بتخلي الصورة تظهر كاملة ومن غير ما تمط أو تتقطع */
+    background-color: #222; /* خلفية غامقة عشان لو الصورة أبعادها مختلفة */
+}
+
+/* ضبط المقاسات للموبايلات الصغيرة جداً */
+@media (max-width: 480px) {
+    header nav a {
+        font-size: 11px !important;
+        gap: 6px !important;
+    }
+    .slide {
+        height: 280px !important;
+    }
+}
+.fixed-watermark-logo {
+    position: fixed;      /* بتخلي اللوجو ثابت في الشاشة مش بيتحرك مع السكرول */
+    bottom: 20px;         /* المسافة من تحت */
+    left: 20px;          /* المسافة من اليمين (تقدر تخليها left لو حابب) */
+    display: flex;        /* عشان نجيب كلمة Powered by جنب اللوجو بالظبط */
+    align-items: center;  /* محاذاة عمودية في المنتصف */
+    gap: 8px;             /* مسافة صغيرة بين الكلمة واللوجو */
+background-image: url(navbg.png);/* خلفية بيضاء شفافة عشان اللوجو يظهر لو الشاشة غامقة */
+    padding: 6px 12px;
+    border-radius: 30px;  /* حواف دائرية ناعمة */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ضل خفيف يدي عمق */
+    z-index: 9999;        /* عشان يفضل فوق أي عنصر في الموقع */
+    user-select: none;    /* تمنع تحديد أو سحب اللوجو */
+}
+
+/* تنسيق كلمة Powered by */
+.powered-text {
+    font-size: 12px;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+/* التحكم في حجم اللوجو */
+.watermark-img {
+    height: 25px;         /* التحكم في الارتفاع عشان تحافظ على النسبة والأبعاد */
+    width: auto;          /* بيظبط العرض تلقائي بناءً على الارتفاع */
+    display: block;
+}
+        body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 40px; color: #333; }
+        .welcome-text { text-align: center; margin-top: 100px; }
+
+        /* Floating Chat Widget Button */
+        .chat-widget-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #007acc; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: none; z-index: 1000; transition: 0.3s; }
+        .chat-widget-btn:hover { transform: scale(1.05); background: #005999; }
+
+        /* Chat Popup Window */
+        .chat-popup { position: fixed; bottom: 95px; right: 25px; width: 380px; height: 550px; background: #ffffff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; z-index: 1000; border: 1px solid #e0e0e0; font-size: 0.95rem; }
+        .chat-header { background: #007acc; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .close-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+        
+        /* Message Area */
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #f9f9f9; }
+        .msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; line-height: 1.4; white-space: pre-line; }
+        .user { background: #007acc; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .bot { background: #eaeaea; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        
+        /* Quick Replies Buttons Options */
+        .options-container { padding: 10px 15px; background: #f9f9f9; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid #eee; }
+        .opt-btn { background: white; color: #007acc; border: 1px solid #007acc; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-weight: 500; transition: 0.2s; }
+        .opt-btn:hover { background: #007acc; color: white; }
+
+        /* Input Area */
+        .chat-input-area { padding: 12px; display: flex; gap: 8px; background: white; border-top: 1px solid #eee; }
+        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
+        .chat-input-area button {  background-image: url(navbg.png); color: white; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; }  
+
+nav a 
+{
+      font-family: 'bungee', sans-serif; 
+      text-decoration: none;
+      font-size: 1.3em;
+      font-weight: bolder;
+      color: aliceblue;
+      display: inline-flex;
+      margin: 20px;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+       transform: scale(1.1);
+        transition: 0.7s ease;
+
+}
+.bungee-regular {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.homepage
+{
+background-image: url(navbg.png);
+width: 100%;
+}
+h1 h2 h3 h4 h5 h6 p span 
+{
+  text-align: center;
+}
+.underworking
+{
+  font-size: 3em;
+  font-weight: bolder;
+  display: inline;
+  color: aliceblue;
+  display: block;
+  padding-left: 100px;
+  font-family: 'chewy', sans-serif; 
+}
+.title {
+    display: flex;
+    justify-content: center;
+    color: #050913;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card {
+   background-image: url(navbg.png);
+    width: 21.25em;
+    box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    transition: 0.7s ease;
+}
+.card:hover {
+    transform: scale(1.1);
+}
+.card .icon {
+    color: #3a6cf4;
+    font-size: 8em;
+    text-align: center;
+}
+.info {
+    text-align: center;
+      color: aliceblue;
+}
+p
+{
+  color: aliceblue;
+}
+h3
+{
+    font-family: 'chewy', sans-serif; 
+    color: aliceblue;
+}
+.socicon
+{
+  font-size: 3em;
+  display: block;
+}
+a
+{
+  font-weight: bolder;
+  text-decoration: none;
+  color: aliceblue;
+  size: 2.2em;
+}
+.topic
+{
+  display: inline-flex;
+}
+body{
+font-family:Arial;
+margin:0;
+text-align:center;
+background:#f4f4f4;
+}
+#features{
+padding:40px;
+background:white;
+text-align:center;
+}
+
+.slideshow{
+width:90%;
+max-width: 900px;
+height:500px;
+margin:auto;
+position:relative;
+overflow:hidden;
+}
+
+.slide{
+width:100%;
+height:100%;
+position:absolute;
+display:none;
+border-radius:10px;
+object-fit:cover;
+}
+.ourworks
+{
+  display: inline-flex;
+}
+.prc
+{
+  border-radius: 10px;
+   background-image: url(navbg.png)
+}
+.titl
+{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+.prices
+{
+  display: inline;
+}
+footer
+{
+  background-image: url(navbg.png);
+  width: 100%;
   
 }
 .goto
