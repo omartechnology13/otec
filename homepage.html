@@ -54,6 +54,272 @@ content="https://omartechnology.netlify.app">>
     <br>
 <br>
 <br>
+<a class="blac" href="otecstore.netlify.app" style="text-decoration: none; display: inline-block;">
+    <button class="goto" style="
+        background-color: #ffffff; 
+        color: #000000; 
+        font-size: 22px; 
+        font-weight: bold; 
+        padding: 15px 40px; 
+        border: 2px solid #000000; 
+        border-radius: 10px; 
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    ">buy now</button>
+</a>
+<br>
+</section> 
+<br>
+  <section class="cards" id="whatcanwedo">
+        <h2 class="title">we can....</h2>
+        <div class="content">
+            <div class="card">
+                <div class="icon">
+                    <i class="fa-solid fa-code" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="info">
+                    <h3>developing websites</h3>
+                    <p>Create and Develop Websites using HTML , CSS ,and javascript</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">
+                   <i class="fa-solid fa-video" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="info">
+                    <h3>design videos</h3>
+                    <p>Design professional videos with amazing tools</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">
+                   <i class="fa-regular fa-file-powerpoint" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="info">
+                    <h3>make presentations</h3>
+                    <p>we can design amazing presentations for companies with professional tools</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <br><br><hr><br><br> 
+    <h2 class="title">our works</h2>
+<section class="ourworks" id="ourworks">
+     <div class="card">
+               <a href="https://drive.google.com/file/d/1GKi7ehDukUXMK1pre9vD8qz_uE_u1uBN/view?usp=drivesdk"> <div class="icon">
+                    <i class="fa-solid fa-video" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="info">
+                    <h3>Designing Alamia Video</h3>
+                    <p>click to view</p>
+                </div>
+            </div></a>
+           <a href="/Users/omarsayed/Desktop/Omar Technology website/ischool competition !!!/ischool.html"> <div class="card">
+                <div class="icon">
+                     <i class="fa-solid fa-code" style="color: rgb(255, 255, 255);"></i>
+                </div>
+                <div class="info">
+                    <h3>ischool website</h3>
+                    <p>click to view</p>
+                </div>
+            </div></a>
+</section>
+<section id="features">
+
+<h2 class="title">Features</h2>
+
+<div class="slideshow">
+<img class="slide" src="img1.jpg">
+<img class="slide" src="img2.jpg">
+<img class="slide" src="img3.jpg">
+</div>
+</section>
+   <button class="chat-widget-btn" onclick="toggleChat()">💬</button>
+
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <span>Customer Support & Sales ⚡</span>
+            <button class="close-btn" onclick="toggleChat()">✕</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">Hello! I am your Omar Technology AI assistant. Choose an option below or type your question:</div>
+        </div>
+
+        <div class="options-container">
+            <button class="opt-btn" onclick="handleOption('About Us')">ℹ️ About Us</button>
+            <button class="opt-btn" onclick="handleOption('Prices Average')">💰 Prices Average</button>
+            <button class="opt-btn" onclick="handleOption('Developing Time')">⏳ Developing Time</button>
+            <button class="opt-btn" onclick="handleOption('Refund Policy ')">🔄 Refund Policy</button>
+            <button class="opt-btn" onclick="handleOption('Payment Methods')">💳 Payment Methods</button>
+            <button class="opt-btn" onclick="handleOption('Human Chatting')">👤 Human Chatting</button>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="customerInput" placeholder="Type your question here..." onkeypress="handleKey(event)">
+            <button onclick="askAgent(document.getElementById('customerInput').value)">Send</button>
+        </div>
+    </div>
+<script>
+    // تأكد من أن المفتاح صحيح وليس به فراغات
+    const API_KEY = "AIzaSyAqBtq4JwkjghpWn_67XLLtoR1948YDRnE";
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+
+    const BUSINESS_INFO = `
+    You are a professional AI Customer Service Agent for Omar Technology.
+    You must guide clients based on these exact details:
+    - About Us: Omar Technology specializes in high-quality web design, design presentations, and design videos.
+    - Prices Average: wesites start at sar 500, videos  start at sar 200 presentations starts at sar 180 .
+    - Developing Time: Projects take between 7 to 14 business days to deliver.
+    - Refund Policy: no refund.
+    - Payment Methods:  direct Bank Transfer.
+    - Human Chatting: chat with us from contact us section .
+    `;
+
+    function toggleChat() {
+        const popup = document.getElementById('chatPopup');
+        popup.style.display = (popup.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function appendMessage(text, isUser) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('msg', isUser ? 'user' : 'bot');
+        msgDiv.innerText = text;
+        messagesContainer.appendChild(msgDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function handleOption(optionName) {
+        appendMessage(optionName, true);
+        askAgent(optionName);
+    }
+
+    async function askAgent(text) {
+    text = text.trim();
+    if (!text) return;
+
+    document.getElementById('customerInput').value = '';
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.classList.add('msg', 'bot');
+    loadingDiv.innerText = "Processing...";
+    document.getElementById('chatMessages').appendChild(loadingDiv);
+    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                // الطريقة الصحيحة لدمج التعليمات والرسالة بدون تعديل تركيب الـ URL
+                systemInstruction: {
+                    parts: [{ text: BUSINESS_INFO }]
+                },
+                contents: [{ 
+                    parts: [{ text: text }] 
+                }]
+            })
+        });
+
+        const data = await response.json();
+        document.getElementById('chatMessages').removeChild(loadingDiv);
+
+        console.log("Gemini API Response:", data);
+
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            const botReply = data.candidates[0].content.parts[0].text;
+            appendMessage(botReply, false);
+        } else {
+            appendMessage("please contact us on whatsapp +966507673413", false);
+        }
+    } catch (error) {
+        document.getElementById('chatMessages').removeChild(loadingDiv);
+        appendMessage("please contact us on whatsapp +966507673413", false);
+        console.error("Fetch Error:", error);
+    }
+}
+
+
+    function handleKey(e) {
+        if (e.key === 'Enter') askAgent(document.getElementById('customerInput').value);
+    }
+</script>
+<br>
+<footer id="ctus" >
+    <hr>
+ <a href="https://www.facebook.com/share/1EUrjB4wVy/?mibextid=wwXIfr">   <div class="socicon">
+    <i class="fa-brands fa-facebook" style="color: rgb(255, 255, 255);" ></i>
+    </div> <span>Omar Technology</span></a>
+    <hr>
+   <a href=" https://whatsapp.com/channel/0029Vb7gIji1iUxgkYnM5Z0K">  <div class="socicon">
+    <i class="fa-brands fa-whatsapp" style="color: rgb(255, 255, 255);"></i>
+    </div> <span>whatsapp channel</span> </a>
+    <hr>
+    <a href="https://wa.me/966507673413">  <div class="socicon">
+    <i class="fa-brands fa-whatsapp" style="color: rgb(255, 255, 255);"></i>
+    </div> <span>+966 50 767 3413</span> </a>
+    <hr>
+        <a href="mailto:omartechnology2025@gmail.com">  <div class="socicon">
+    <i class="fa-solid fa-envelope" style="color: rgb(255, 255, 255);"></i>
+    </div> <span>omartechnology2025@gmail.com</span> </a>
+    <hr>
+    <h1 style="color: aliceblue;" class="tilte">All rights recieved to Omar Technology 2026 ©</h1>
+</footer>
+<div class="fixed-watermark-logo">
+    <span class="powered-text">Powered by</span>
+    <img src="logo.png" alt="Omar Technology Logo" class="watermark-img">
+</div>
+
+<script>
+    let index=0;
+showSlides();
+
+function showSlides(){
+
+let slides=document.getElementsByClassName("slide");
+
+for(let i=0;i<slides.length;i++){
+slides[i].style.display="none";
+}
+
+index++;
+
+if(index>slides.length){
+index=1;
+}
+
+slides[index-1].style.display="block";
+
+setTimeout(showSlides,3000);
+
+}
+</script>
+</body>
+</html>
+
+<a href="#whatcanwedo">we can .....</a>
+<a href="#ourworks"> our works</a>
+<a href="#features">features</a>
+<a href="#ctus">contact us</a>
+<a href="arabic.html">{عربي}</a>
+        </nav>
+    </header> 
+    <br> <br> <br><br><br><br><br><br><br><br><br><br><br><br>
+    
+
+
+    <section id="homepage" class="homepage">
+        <br>     
+    <img src="logo.png" alt="logo" class="logo" height="300">
+      <div class="topic"> 
+         <span class="white"> No need for a speciallized programmer for making your website . . . . <b>You can make it here</b></span>
+    </div> 
+    <br>
+<br>
+<br>
 <a class="blac" href="admin.html" style="text-decoration: none; display: inline-block;">
     <button class="goto" style="
         background-color: #ffffff; 
