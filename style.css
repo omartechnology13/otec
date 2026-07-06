@@ -611,3 +611,10 @@ background-image: url(navbg.png);/* خلفية بيضاء شفافة عشان ا
     width: auto;          /* بيظبط العرض تلقائي بناءً على الارتفاع */
     display: block;
 }
+        html body
+        {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
