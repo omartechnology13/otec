@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alvexos | Under Maintenance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 35px;
+        }
+
+        .line {
+            width: 45px;
+            height: 3px;
+            background: white;
+            margin: 0 auto 25px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 8vw, 65px);
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .brand {
+            margin-top: 65px;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #555;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: .2; }
+            40% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img src="logo.png" alt="Alvexos Logo" class="logo">
+
+        <div class="line"></div>
+
+        <h1>ALVEXOS</h1>
+
+        <h2>UNDER MAINTENANCE</h2>
+
+        <p>
+            We're currently working on improving our website.
+            <br>
+            We'll be back soon with something better.
+        </p>
+
+        <div style="margin-top: 35px;">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <div class="brand">
+            ALVEXOS TECHNOLOGICAL COMPANY
+        </div>
+
+    </div>
+
+</body>
+</html>
